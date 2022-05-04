@@ -9,8 +9,8 @@ import Performance from './Performance.js'
 import Resources from './Utils/Resources.js';
 import PreLoader from './PreLoader.js';
 import sources from './sources.js';
-import Cubes from '../cubes/Cubes.js';
-import Planet from './World/Planet.js';
+import Universe from './World/Universe.js';
+import Materials from './World/Materials.js';
 
 let instance = null;
 
@@ -55,8 +55,8 @@ export default class App {
         this.resources = new Resources(sources);
         this.performance = new Performance();
         this.preLoader = new PreLoader();
-        this.planet = new Planet();
-        //this.cubes = new Cubes();
+        this.universe = new Universe();
+        this.materials = new Materials();
         
         // Resize event
         this.sizes.on('resize', () => {
@@ -76,9 +76,8 @@ export default class App {
 
     update() {
         this.camera.update();
+        this.universe.update();
         this.performance.update();
-        this.planet.update();
-        //this.cubes.update();
 
         this.renderer.instance.render(this.scene, this.camera.instance);
     }
