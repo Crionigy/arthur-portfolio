@@ -27,6 +27,8 @@ export default class Materials {
 
     mapTextures() {
         this.planetImage = this.resources.items.earthImage;
+        this.smallStar = this.resources.items.smallStar;
+        this.bigStar = this.resources.items.bigStar;
 
         this.resources.trigger('texturesMapped')
     }

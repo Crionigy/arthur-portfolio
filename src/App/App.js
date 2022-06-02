@@ -9,8 +9,8 @@ import Performance from './Performance.js'
 import Resources from './Utils/Resources.js';
 import PreLoader from './PreLoader.js';
 import sources from './sources.js';
-import Universe from './World/Universe.js';
 import Materials from './World/Materials.js';
+import Environment from './World/Environment.js';
 
 let instance = null;
 
@@ -55,7 +55,7 @@ export default class App {
         this.resources = new Resources(sources);
         this.performance = new Performance();
         this.preLoader = new PreLoader();
-        this.universe = new Universe();
+        this.environment = new Environment();
         this.materials = new Materials();
         
         // Resize event
@@ -76,7 +76,7 @@ export default class App {
 
     update() {
         this.camera.update();
-        this.universe.update();
+        this.environment.update();
         this.performance.update();
 
         this.renderer.instance.render(this.scene, this.camera.instance);

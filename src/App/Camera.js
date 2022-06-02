@@ -19,46 +19,52 @@ export default class Camera {
         this.setTransitions();
 
         if(this.debug.active) {
-            this.debugFolder = this.debug.ui.addFolder('camera');
+            this.debugFolder = this.debug.ui.addFolder('Camera');
 
             this.positionDebugFolder = this.debugFolder.addFolder('cameraPosition');
-            this.positionDebugFolder.add(this.instance.position, 'x', -20, 20, 0.1);
-            this.positionDebugFolder.add(this.instance.position, 'y', -20, 20, 0.1);
-            this.positionDebugFolder.add(this.instance.position, 'z', -60, 60, 0.1);
+            this.positionDebugFolder.add(this.instance.position, 'x', -10000, 10000, 0);
+            this.positionDebugFolder.add(this.instance.position, 'y', -10000, 10000, 0);
+            this.positionDebugFolder.add(this.instance.position, 'z', -10000, 10000, 0);
+            this.positionDebugFolder.close()
             
             this.targetDebugFolder = this.debugFolder.addFolder('cameraTarget');
-            this.targetDebugFolder.add(this.controls.target, 'x', -20, 20, 0.1);
-            this.targetDebugFolder.add(this.controls.target, 'y', -20, 20, 0.1);
-            this.targetDebugFolder.add(this.controls.target, 'z', -20, 20, 0.1);
+            this.targetDebugFolder.add(this.controls.target, 'x', -10000, 10000, 0);
+            this.targetDebugFolder.add(this.controls.target, 'y', -10000, 10000, 0);
+            this.targetDebugFolder.add(this.controls.target, 'z', -10000, 10000, 0);
+            this.targetDebugFolder.close()
             
-            /*
-            this.cam = false;
-            this.cameraToggle = {unlockCamera:false};
+            this.camToggle = {cameraRotation:false};
             this.debugFolder
-            .add(this.cameraToggle, 'unlockCamera')
+            .add(this.camToggle, 'cameraRotation')
             .onChange(() =>
             {
-                this.cam ? this.camAngle.default() : this.camAngle.unlocked()
+                this.controls.autoRotate = this.camToggle.cameraRotation;
             });
-            */
+
+            this.camUnlocked = {cameraUnlocked:true};
+            this.debugFolder
+            .add(this.camUnlocked, 'cameraUnlocked')
+            .onChange(() =>
+            {
+                this.controls.maxPolarAngle = Math.PI;
+            });
         }
     }
 
     setInstance() {
-        this.instance = new THREE.PerspectiveCamera(50, this.sizes.width / this.sizes.height, 0.4, 500);
-        this.instance.position.x = 15.9;
-        this.instance.position.y = 6.8;
-        this.instance.position.z = 100;
+        this.instance = new THREE.PerspectiveCamera(45, this.sizes.width / this.sizes.height, 1, 10000);
+        this.instance.position.set(1200, 800, 350);
+        this.instance.lookAt(0, 0, 0);
         this.scene.add(this.instance);
     }
 
     setControls() {
         this.controls = new OrbitControls(this.instance, this.canvas);
         this.controls.enableDamping = true;
-        this.controls.enablePan = false;
-        this.controls.rotateSpeed = 1.2;
-        this.controls.zoomSpeed = 0.8;
+        this.controls.dampingFactor = 0.05;
         this.controls.target.z = -1;
+        this.controls.maxPolarAngle = Math.PI / 2.3;
+        this.controls.autoRotateSpeed = 3;
     }
 
     

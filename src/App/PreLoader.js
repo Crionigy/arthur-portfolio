@@ -1,4 +1,3 @@
-import Cubes from '../cubes/Cubes.js';
 import App from './App.js';
 import EventEmitter from './Utils/EventEmitter.js';
 
