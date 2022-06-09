@@ -10,9 +10,9 @@ export default class Space {
         const geometryA = new THREE.BufferGeometry();
         const geometryB = new THREE.BufferGeometry();
         const geometryC = new THREE.BufferGeometry();
-        const material = new THREE.PointsMaterial({ size: 0.5 });
+        const material = new THREE.PointsMaterial({ size: 1 });
 
-        //geometryA.setAttribute("position", new THREE.BufferAttribute(this.getRandomParticelPos(10000), 3));
+        geometryA.setAttribute("position", new THREE.BufferAttribute(this.getRandomParticelPos(10000), 3));
         //geometryB.setAttribute("position", new THREE.BufferAttribute(this.getRandomParticelPosPas(10000), 3));
 
         const vertices = new Float32Array( [
@@ -53,10 +53,11 @@ export default class Space {
 
         for (let z = 1; z < cellSize; ++z) {
             for (let x = 1; x < cellSize; ++x) {
+                this.scene.add(new THREE.Points(geometryA, material));
             }
           }
 
-        //this.scene.add(new THREE.Points(geometryA, material));
+        this.scene.add(new THREE.Points(geometryA, material));
         //this.scene.add(new THREE.Points(geometryB, material));
         //this.scene.add(new THREE.Points(geometryC, material));
     }

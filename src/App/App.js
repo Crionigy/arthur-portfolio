@@ -9,7 +9,7 @@ import Performance from './Performance.js'
 import Resources from './Utils/Resources.js';
 import PreLoader from './PreLoader.js';
 import sources from './sources.js';
-import Materials from './World/Materials.js';
+import Materials from './Utils/Materials.js';
 import Environment from './World/Environment.js';
 
 let instance = null;
