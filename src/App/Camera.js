@@ -52,9 +52,10 @@ export default class Camera {
     }
 
     setInstance() {
-        this.instance = new THREE.PerspectiveCamera(45, this.sizes.width / this.sizes.height, 1, 10000);
-        this.instance.position.set(1200, 800, 350);
-        this.instance.lookAt(0, 0, 0);
+        this.instance = new THREE.PerspectiveCamera(75, 2, 1.5, 5);
+        //this.instance.position.set(1200, 800, 350);
+        //this.instance.lookAt(0, 0, 0);
+        this.instance.position.z = 2;
         this.scene.add(this.instance);
     }
 
@@ -63,7 +64,7 @@ export default class Camera {
         this.controls.enableDamping = true;
         this.controls.dampingFactor = 0.05;
         this.controls.target.z = -1;
-        this.controls.maxPolarAngle = Math.PI / 2.3;
+        this.controls.maxPolarAngle = Math.PI / 2;
         this.controls.autoRotateSpeed = 3;
     }
 
@@ -110,6 +111,6 @@ export default class Camera {
     }
 
     update() {
-        this.controls.update();
+        //this.controls.update();
     }
 }

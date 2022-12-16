@@ -67,6 +67,8 @@ export default class App {
         this.time.on('tick', () => {
             this.update();
         });
+
+        this.mouseTrack()
     }
 
     resize() {
@@ -78,7 +80,14 @@ export default class App {
         this.camera.update();
         this.environment.update();
         this.performance.update();
-
+        
         this.renderer.instance.render(this.scene, this.camera.instance);
+    }
+
+    mouseTrack() {
+        document.addEventListener("mousemove", function(e) {
+            this.mouseX = e.clientX;
+            this.mouseY = e.clientY;
+        });
     }
 }

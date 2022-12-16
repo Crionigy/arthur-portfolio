@@ -1,7 +1,6 @@
 import * as THREE from 'three';
 import App from '../App.js'
 import Ground from './Ground.js';
-import Planet from './Planet.js'
 import Space from './Space.js';
 
 export default class Environment {
@@ -20,14 +19,13 @@ export default class Environment {
         });
 
         this.resources.on('texturesMapped', () => {
-            this.planet = new Planet();
             this.ground = new Ground();
-            //this.space = new Space();
+            this.space = new Space();
         });
     }
 
     update() {
-        if(this.ground) {this.ground.update()}
-        if(this.planet) {this.planet.update()}
+        if(this.ground) { this.ground.update() }
+        if(this.space) { this.space.update() }
     }
 }
